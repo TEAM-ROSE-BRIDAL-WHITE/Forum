@@ -1,5 +1,6 @@
 <?php
 include_once("db.php");
+session_start();
 class AddQuestions extends dBconn{
     private function add($name, $content, $id){
         parent::addSomething(
