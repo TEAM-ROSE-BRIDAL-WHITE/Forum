@@ -22,7 +22,6 @@ create table if not exists posts(
 	user_id int not null, /*ot koi user e dobavena*/
 	cat_id int not null, /*kam koq kategoriq e saotvetniqt podting (vapros)*/
 	timeadded int not null,
-	fromcat varchar(255) not null,
 	timeedited int not null,
 	editfromwho int not null,
 	visits int not null,
