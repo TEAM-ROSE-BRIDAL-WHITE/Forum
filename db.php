@@ -4,7 +4,7 @@ class dbConn
     private $user='root';
     private $pass='vertrigo';
     private $host='localhost';
-    private $dbname='biouni';
+    private $dbname='forum';
 
     private $query;
     private $result;
