@@ -48,3 +48,8 @@ create table if not exists answers(
 	foreign key (user_id) references users(user_id),
 	foreign key (post_id) references posts(post_id)
 );
+
+create table if not exists config(
+	questionsperpage int not null
+);
+insert into config (questionsperpage) values (15);
