@@ -25,6 +25,7 @@ create table if not exists posts(
 	timeedited int not null,
 	editfromwho int not null,
 	visits int not null,
+	lastanswer int not null,
 	foreign key (user_id) references users(user_id),
 	foreign key (cat_id) references categories(cat_id)
 );
