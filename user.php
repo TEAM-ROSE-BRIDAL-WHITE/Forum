@@ -27,9 +27,6 @@ class regLogMisc{
         return true;
     }
 }
-?>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<?php
 class Reg extends dbConn{
     private $mail;
     private $password;
