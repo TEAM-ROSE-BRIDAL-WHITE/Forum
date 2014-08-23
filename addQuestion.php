@@ -21,8 +21,8 @@ class AddQuestions extends dBconn{
         if(is_numeric($this->regUser)){
             parent::addSomething(
                 'posts',
-                array('name', 'content', 'user_id', 'timeadded', 'cat_id'),
-                array($name, $content, $this->regUser, time(), $cat_id)
+                array('name', 'content', 'user_id', 'timeadded', 'cat_id', 'lastanswer'),
+                array($name, $content, $this->regUser, time(), $cat_id, time())
             );
             $this->currentQuestion=mysqli_insert_id($this->db);
             $this->insertTags($tags);
