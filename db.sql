@@ -36,3 +36,14 @@ create table if not exists tags(
 	tagname varchar (255) not null,
 	foreign key (post_id) references posts(post_id)
 );
+
+create table if not exists answers(
+	answer_id int not null auto_increment primary key,
+	post_id int not null,
+	timeadded int not null,
+	timeedited int not null,
+	user_id int not null,
+	content text not null,
+	foreign key (user_id) references users(user_id),
+	foreign key (post_id) references posts(post_id)
+);
