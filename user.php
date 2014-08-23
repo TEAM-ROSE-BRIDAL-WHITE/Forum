@@ -1,6 +1,36 @@
 <?php
 include_once("db.php");
-class reg extends dbConn{
+class regLogMisc{
+    //when a user try to register we will alert him in case of short password
+    public static function checkPass($pass){
+        if(strlen($pass)<6){
+            return false;
+        }
+        return true;
+    }
+    //when a uset try to register we will alert him in case of wrong email
+    public static function checkMail($mail){
+        $partsOfMail=explode('@', $mail);
+        if(!@$partsOfMail[1]){
+            return false;
+        }
+        if(strlen($partsOfMail[0])<3 || strlen($partsOfMail[1])<5){
+            return false;
+        }
+        $secondPartOfMail=explode('.', $partsOfMail[1]);
+        if(!$secondPartOfMail[1]){
+            return false;
+        }
+        if(strlen($secondPartOfMail[0])<2 || strlen($secondPartOfMail[1])<2){
+            return false;
+        }
+        return true;
+    }
+}
+?>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<?php
+class Reg extends dbConn{
     private $mail;
     private $password;
     private $password2;
@@ -18,13 +48,15 @@ class reg extends dbConn{
     }
     //try to register someone
     private function checkData(){
-        if($this->checkPass()==false){
+        //get the static class with helping function
+        $misc=new regLogMisc();
+        if($misc::checkPass($this->password)==false){
             return 'Паролата ви трябва да е поне 6 символа!';
         }
         else if($this->checkPassWords()==false){
             return 'Паролите не съвпадат!';
         }
-        else if($this->checkMail()==false){
+        else if($misc::checkMail($this->mail)==false){
             return 'Невалиден имейл!';
         }
         else if($this->checkExists('mail')==false){
@@ -65,31 +97,6 @@ class reg extends dbConn{
         }
         return true;
     }
-    //when a user try to register we will alert him in case of short password
-    private function checkPass(){
-        if(strlen($this->password)<6){
-            return false;
-        }
-        return true;
-    }
-    //when a uset try to register we will alert him in case of wrong email
-    private function checkMail(){
-        $partsOfMail=explode('@', $this->mail);
-        if(!@$partsOfMail[1]){
-            return false;
-        }
-        if(strlen($partsOfMail[0])<3 || strlen($partsOfMail[1])<5){
-            return false;
-        }
-        $secondPartOfMail=explode('.', $partsOfMail[1]);
-        if(!$secondPartOfMail[1]){
-            return false;
-        }
-        if(strlen($secondPartOfMail[0])<2 || strlen($secondPartOfMail[1])<2){
-            return false;
-        }
-        return true;
-    }
     private function checkExists($what){
         $isExist=parent::selectSomething($what, 'users', $what, '=', $this->$what);
         if(mysqli_num_rows($isExist)>0){
@@ -102,6 +109,66 @@ class reg extends dbConn{
     }
     public function tryReg(){
         $this->checkData();
+    }
+}
+
+class Login extends dbConn{
+    private $mail;
+    private $password;
+    public function __construct(){
+        parent::connect();
+    }
+    public function setVars($mail, $pass){
+        $this->mail=$mail;
+        $this->password=$pass;
+    }
+    private function logIn($mail, $pass){
+        $misc=new regLogMisc();
+        if(!$misc::checkMail($mail)){
+            echo "Невалиден имейл";
+            return false;
+        }
+        if(!$misc::checkPass($pass)){
+            echo "Тази парола е невалидна";
+            return false;
+        }
+        return true;
+    }
+    private function checkUser(){
+        $mail=$this->mail;
+        $pass=md5($this->password);
+        if($this->logIn($mail, $pass)===false){
+            return false;
+        }
+        if(mysqli_num_rows($this->isThareAUser($mail, $pass))<1){
+            if(mysqli_num_rows($this->isValidMail($mail))>0){
+                echo 'неправилна парола';
+                return false;
+            }
+            echo 'няма такъв имейл';
+            return false;
+        }
+        $_SESSION['user']=$this->getUserId($this->isThareAUser($mail, $pass));
+        echo 'Пренасочваме ви!';
+        return true;
+    }
+    private function isThareAUser($mail, $pass){
+        $isThare=parent::selectSomething('user_id', 'users', 'mail', '=', $mail,
+            array('password', '='),
+            array($pass, '=')
+        );
+        return $isThare;
+    }
+    private function isValidMail($mail){
+        $isValidMail=parent::selectSomething('*', 'users', 'mail', '=', $mail);
+        return $isValidMail;
+    }
+    private function getUserId($result){
+        $getId=mysqli_fetch_object($result);
+        return $getId->user_id;
+    }
+    public function doLog(){
+        $this->checkUser();
     }
 }
 ?>
