@@ -50,6 +50,7 @@ create table if not exists answers(
 );
 
 create table if not exists config(
-	questionsperpage int not null
+	questionsperpage int not null,
+	answersperpage int not null
 );
 insert into config (questionsperpage) values (15);
