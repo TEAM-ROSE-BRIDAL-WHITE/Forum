@@ -34,7 +34,7 @@ create table if not exists posts(
 create table if not exists tags(
 	tag_id int not null auto_increment primary key,
 	post_id int not null,
-	tagname varchar (255) not null,
+	tagname varchar (255) not null COLLATE utf8_unicode_ci,
 	foreign key (post_id) references posts(post_id)
 );
 
@@ -44,7 +44,7 @@ create table if not exists answers(
 	timeadded int not null,
 	timeedited int not null,
 	user_id int not null,
-	content text not null,
+	content text not null COLLATE utf8_unicode_ci,
 	foreign key (user_id) references users(user_id),
 	foreign key (post_id) references posts(post_id)
 );
