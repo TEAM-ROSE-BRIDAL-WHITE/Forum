@@ -1,6 +1,6 @@
 <?php
 include_once('db.php');
-include('miscFunctions.php');
+include_once('miscFunctions.php');
 class scrollingQuestions extends dbConn{
     private $questionsPerPage;
     private $arrResultQuestions;
@@ -16,7 +16,8 @@ class scrollingQuestions extends dbConn{
     //if we scrolling down we will select database results with this function
     private function selectScrollingQuestions(){
         $this->selectLimit();
-        $this->arrResultQuestions=parent::selectSomething('*', 'posts', '', '', '', null, null, null, null, 'lastanswer', 'desc', ($_GET['scrolling'] + 1).', '.$this->questionsPerPage);
+        $this->arrResultQuestions=parent::selectSomething('*', 'posts', '', '', '', null, null, null, null, 'lastanswer',
+            'desc', ($_GET['scrolling'] + 1).', '.$this->questionsPerPage);
     }
     //extract the database results from "selectQuestions()" and use them
     private function extractQuestions(){
@@ -30,7 +31,7 @@ class scrollingQuestions extends dbConn{
             $fromWho=$misc->singleSelection('username', 'users', 'user_id', '=', $row->user_id);
             ?>
             <article class="homePageQuestions homePageArticle<?php echo $i; ?>">
-                <h3 class="homePageQuestionHeading"><a href="?questionId=<?php echo $row->post_id; ?>"><?php echo $row->name; ?></a></h3>
+                <h3 class="homePageQuestionHeading"><a href="?questionBody=<?php echo $row->post_id; ?>"><?php echo $row->name; ?></a></h3>
                 <span class="homePageQuestionAddFrom"><a href="?user=<?php echo $row->user_id; ?>"><?php echo $fromWho; ?></a></span>
                 <span class="homePageQuestionAddTime"><?php echo date('d.m.Y в H:i', $row->timeadded); ?></span>
                 <span class="homePageQuestionVisits"><?php echo $row->visits ?></span><br />
