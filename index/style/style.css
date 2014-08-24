@@ -1,0 +1,12 @@
+* {
+	margin: 0px;
+	padding: 0px;
+}
+/* header */
+#header{
+	background-color: #234465;
+	height: 100px;
+}
+#header ul ,li {
+	display: inline-block;
+}
