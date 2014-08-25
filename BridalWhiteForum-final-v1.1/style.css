@@ -1,0 +1,83 @@
+div, aside, section, span, article, h1, h2, h3, h4, h5, h6, aside, header, footer{
+    margin: 0px;
+    padding: 0px;
+}
+body{
+    font-size: 16px;
+    font-family: Tahoma;
+}
+.homePageQuestions, .questionBodyAnswer{
+    background: #ded5d7;
+    margin-bottom: 15px;
+    padding: 5px;
+    box-shadow: 1px 1px 3px black;
+}
+.homePageQuestions > span, .questionBody > span, .questionBodyAnswer > span{
+    margin-right: 15px;
+}
+.homePageQuestionHeading{
+    box-sizing: border-box;
+    margin-bottom: 9px;
+}
+.homePageQuestionHeading > a{
+    color: #234465;
+    text-decoration: none;
+}
+.homePageQuestionHeading > a:hover{
+    text-shadow: 1px 1px 3px #234465;
+}
+.homePageQuestionAddFrom > a{
+    font-weight: bold;
+}
+.homePageQuestionAddTime{
+    font-weight: bold;
+}
+.homePageQuestionVisits{
+    display: block;
+    text-align: left;
+    margin-top: 9px;
+    font-style: italic;
+}
+aside{
+    margin-top: 15px;
+}
+.sectionHeading{
+    margin: 15px 0 15px 0;
+}
+.glyphicon{
+    color: #234465;
+    margin-right: 4px;
+}
+.logHolder{
+    width: 300px;
+    line-height: 50px;
+    color: white;
+    display: inline-block;
+}
+#srch-term{
+    width: 200px;
+}
+.questionBodyHeading{
+    font-weight: bold;
+    border-bottom: 1px solid black;
+    margin-bottom: 15px;
+}
+.questionBodyTags{
+    display: block;
+    text-align: left;
+    font-size: 0.8em;
+    margin: 15px 0 15px 0;
+}
+.questionBodyTags > a{
+    color: #234465;
+}
+.questionBodyAddAnswer{
+    display: block;
+    margin-bottom: 15px;
+}
+.questionBody{
+    margin-bottom: 15px;
+    background: #ffffff;
+    padding: 5px;
+    box-shadow: 1px 1px 3px black;
+}
