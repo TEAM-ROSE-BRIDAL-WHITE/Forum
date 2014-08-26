@@ -53,4 +53,4 @@ create table if not exists config(
 	questionsperpage int not null,
 	answersperpage int not null
 );
-insert into config (questionsperpage) values (15);
+insert into config (questionsperpage, answersperpage) values (15, 15);
