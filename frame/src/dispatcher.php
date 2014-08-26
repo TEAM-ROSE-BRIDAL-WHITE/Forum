@@ -1,9 +1,5 @@
 <?php
-/**
- *
- * @author Team-Mnementh
- *
- */
+
 class Dispatcher {
 	private $pageContainer = array();
 	

@@ -4,11 +4,6 @@ include 'dispatcher.php';
 include 'router.php';
 include 'view.php';
 
-/**
- *
- * @author Team-Mnementh
- *
- */
 class Fc {
 	
 	function run () {		

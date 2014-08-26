@@ -1,13 +1,5 @@
 <?php
-/*
- * 
- */
 
-/**
- * 
- * @author Team-Mnementh
- *
- */
 class View {
 	
 	

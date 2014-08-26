@@ -1,13 +1,5 @@
 <?php
-/*
- * 
- */
 
-/**
- * 
- * @author Team-Mnementh
- * 
- */
 class Router {
 	
 	private static $_instance=null;
