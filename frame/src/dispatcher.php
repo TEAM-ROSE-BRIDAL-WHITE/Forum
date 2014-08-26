@@ -58,7 +58,7 @@ class Dispatcher {
             $title = "";
             $selected = $controller;		
             switch ($controller) {
-                    case "register":
+                    case "registration":
                             $title = "Регистрация";
                             break;
                     case "login":

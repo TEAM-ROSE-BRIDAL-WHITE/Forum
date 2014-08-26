@@ -10,7 +10,7 @@ class View {
 	public function __set($property, $value) {}
 	
 	/**
-	 * @return string path to the view direcctory
+	 * @return string path to the view directory
 	 */
 	public static function getPath() {
 		if (self::$_path==null) {
